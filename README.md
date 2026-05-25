@@ -82,7 +82,7 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for the full v2 migration plan.
 
 ### 1. Fork or clone this repo
 ```bash
-git clone https://github.com/USERNAME/ai-daily-tutor.git
+git clone https://github.com/kaushik701/ai-daily-tutor.git
 cd ai-daily-tutor
 ```
 
