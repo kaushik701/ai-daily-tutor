@@ -1,0 +1,29 @@
+AI Daily Tutor — Day 20 of 90
+Day 20: Attention Is All You Need (Literally)
+
+TL;DR: Attention lets a model decide which parts of its input matter most for each part of its output.
+
+In plain English:
+Imagine you are translating the English sentence "The cat sat on the mat" into French. When you write the French word for "sat", you need to look back at "cat" (who sat?) more than at "the" or "on". Attention is the mechanism that learns these look-back weights automatically.
+
+Formally, attention takes three things: a Query (what am I looking for?), Keys (what is each input element offering?), and Values (the actual content). It computes how well each Query matches each Key, normalizes those scores with softmax, and uses them to take a weighted sum of the Values. That weighted sum is the output.
+
+Think of it this way:
+Attention is like skimming a textbook before a test. Your eyes do not give equal weight to every page; you spend more time on the chapters most relevant to the question. The Query is your question, the Keys are the chapter titles, and the Values are the actual content you absorb.
+
+In code:
+import torch
+import torch.nn.functional as F
+
+# Q, K, V each shape (seq_len, d_model)
+def attention(Q, K, V):
+    scores = Q @ K.T / (K.shape[-1] ** 0.5)
+    weights = F.softmax(scores, dim=-1)
+    return weights @ V
+
+Three lines: dot-product scores, scale by sqrt(d_k) for stable gradients, softmax to get weights, then weighted sum of values.
+
+Why it matters for AI Eng interviews:
+Attention is the single most important concept in modern AI. Every transformer, every LLM, every RAG re-ranker, every multimodal model uses it. Interviewers ask about Q/K/V because it tests whether you understand the mechanism or only the buzzword. Be ready to draw it on a whiteboard.
+
+One thing to remember: Attention = softmax(Q · Kᵀ / √d) · V — three matmuls and a normalization, that is all.

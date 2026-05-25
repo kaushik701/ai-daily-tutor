@@ -1,0 +1,550 @@
+# 90-Day AI Engineering Curriculum
+# Days 1-30: ML/DL Fundamentals
+# Days 31-60: LLM-Specific Concepts
+# Days 61-90: AI Engineering & Production Stack
+#
+# Each entry: day number, topic, short hint to focus the explanation,
+# difficulty tag, and a "why-it-matters" angle for AI Eng interviews.
+
+phase_1_fundamentals:
+  - day: 1
+    topic: "What is a Model?"
+    focus: "Function approximation, parameters vs hyperparameters"
+    difficulty: beginner
+    interview_angle: "Foundation for all ML discussions"
+
+  - day: 2
+    topic: "Supervised vs Unsupervised vs Reinforcement Learning"
+    focus: "When to use each, with one concrete example per type"
+    difficulty: beginner
+    interview_angle: "Common framing question"
+
+  - day: 3
+    topic: "Training, Validation, and Test Sets"
+    focus: "Why three splits exist, data leakage"
+    difficulty: beginner
+    interview_angle: "Asked in every ML interview"
+
+  - day: 4
+    topic: "Bias vs Variance Tradeoff"
+    focus: "Underfitting vs overfitting with a learning curve example"
+    difficulty: beginner
+    interview_angle: "Diagnosing model failures"
+
+  - day: 5
+    topic: "Loss Functions"
+    focus: "MSE for regression, cross-entropy for classification, intuition not derivation"
+    difficulty: beginner
+    interview_angle: "Why choose one over another"
+
+  - day: 6
+    topic: "Gradient Descent"
+    focus: "The hill-climbing analogy, learning rate, one update step"
+    difficulty: beginner
+    interview_angle: "Foundation of all neural network training"
+
+  - day: 7
+    topic: "Stochastic vs Batch vs Mini-batch Gradient Descent"
+    focus: "Tradeoffs in noise, speed, memory"
+    difficulty: beginner
+    interview_angle: "Practical training decisions"
+
+  - day: 8
+    topic: "Linear Regression"
+    focus: "The simplest model, what its weights mean"
+    difficulty: beginner
+    interview_angle: "Baseline for any tabular problem"
+
+  - day: 9
+    topic: "Logistic Regression"
+    focus: "Sigmoid, classification probabilities"
+    difficulty: beginner
+    interview_angle: "Often the right answer when DL is overkill"
+
+  - day: 10
+    topic: "Decision Trees and Random Forests"
+    focus: "Splits, ensembling, feature importance"
+    difficulty: beginner
+    interview_angle: "Strong tabular baseline, often beats DL"
+
+  - day: 11
+    topic: "Neural Networks: Perceptron and MLP"
+    focus: "Layers, weights, biases, forward pass"
+    difficulty: beginner
+    interview_angle: "Building block of everything"
+
+  - day: 12
+    topic: "Activation Functions"
+    focus: "ReLU, GELU, sigmoid, tanh — why nonlinearity matters"
+    difficulty: beginner
+    interview_angle: "Asked surprisingly often"
+
+  - day: 13
+    topic: "Backpropagation"
+    focus: "Chain rule applied to networks, intuition not full math"
+    difficulty: intermediate
+    interview_angle: "How models actually learn"
+
+  - day: 14
+    topic: "Optimizers: SGD, Momentum, Adam"
+    focus: "Why Adam is the default, when SGD wins"
+    difficulty: intermediate
+    interview_angle: "Practical training knob"
+
+  - day: 15
+    topic: "Regularization: L1, L2, Dropout"
+    focus: "Fighting overfitting, intuition for each"
+    difficulty: intermediate
+    interview_angle: "Standard interview question"
+
+  - day: 16
+    topic: "Batch Normalization and Layer Normalization"
+    focus: "Why training got stable, where each is used"
+    difficulty: intermediate
+    interview_angle: "Transformer prerequisite"
+
+  - day: 17
+    topic: "Convolutional Neural Networks (CNNs)"
+    focus: "Convolutions, pooling, why they work for images"
+    difficulty: intermediate
+    interview_angle: "Still relevant for vision and signals"
+
+  - day: 18
+    topic: "Recurrent Neural Networks (RNNs) and LSTMs"
+    focus: "Sequence modeling before transformers, vanishing gradients"
+    difficulty: intermediate
+    interview_angle: "Historical context, attention motivation"
+
+  - day: 19
+    topic: "Word Embeddings: Word2Vec and GloVe"
+    focus: "From one-hot to dense vectors, king - man + woman = queen"
+    difficulty: intermediate
+    interview_angle: "Foundation of modern NLP"
+
+  - day: 20
+    topic: "Attention Mechanism"
+    focus: "Query, Key, Value — the core idea, with a tiny worked example"
+    difficulty: intermediate
+    interview_angle: "Most important concept in modern AI"
+
+  - day: 21
+    topic: "Transformers"
+    focus: "Self-attention, multi-head, why they replaced RNNs"
+    difficulty: intermediate
+    interview_angle: "Asked in every AI Eng interview"
+
+  - day: 22
+    topic: "Positional Encoding"
+    focus: "How transformers know word order, sinusoidal vs learned"
+    difficulty: intermediate
+    interview_angle: "Common follow-up to transformers"
+
+  - day: 23
+    topic: "Encoder-only vs Decoder-only vs Encoder-Decoder"
+    focus: "BERT vs GPT vs T5, when to use each"
+    difficulty: intermediate
+    interview_angle: "Choosing the right architecture"
+
+  - day: 24
+    topic: "Tokenization"
+    focus: "BPE, WordPiece, SentencePiece, tokens vs words"
+    difficulty: intermediate
+    interview_angle: "Affects cost, latency, multilingual"
+
+  - day: 25
+    topic: "Pretraining vs Fine-tuning"
+    focus: "Two-stage paradigm, why pretraining transfers"
+    difficulty: intermediate
+    interview_angle: "Foundation for all LLM work"
+
+  - day: 26
+    topic: "Transfer Learning"
+    focus: "Reusing pretrained features, when it fails"
+    difficulty: intermediate
+    interview_angle: "Practical deployment pattern"
+
+  - day: 27
+    topic: "Evaluation Metrics: Accuracy, Precision, Recall, F1"
+    focus: "When each lies, confusion matrix"
+    difficulty: intermediate
+    interview_angle: "Classic interview question"
+
+  - day: 28
+    topic: "ROC, AUC, and Precision-Recall Curves"
+    focus: "Threshold-independent evaluation, when AUC misleads"
+    difficulty: intermediate
+    interview_angle: "Common in classification roles"
+
+  - day: 29
+    topic: "Cross-Validation"
+    focus: "K-fold, stratified, time-series splits"
+    difficulty: intermediate
+    interview_angle: "Robust evaluation"
+
+  - day: 30
+    topic: "Hyperparameter Tuning"
+    focus: "Grid, random, Bayesian search; when to stop"
+    difficulty: intermediate
+    interview_angle: "Practical model improvement"
+
+phase_2_llm:
+  - day: 31
+    topic: "What is a Large Language Model?"
+    focus: "Next-token prediction, scale, emergent abilities"
+    difficulty: intermediate
+    interview_angle: "Framing the entire field"
+
+  - day: 32
+    topic: "Autoregressive Generation"
+    focus: "Token by token, why latency scales with output length"
+    difficulty: intermediate
+    interview_angle: "Affects every LLM cost decision"
+
+  - day: 33
+    topic: "Temperature, Top-k, Top-p Sampling"
+    focus: "Controlling randomness, when to use each"
+    difficulty: intermediate
+    interview_angle: "Every LLM API has these knobs"
+
+  - day: 34
+    topic: "Context Window"
+    focus: "Token limits, why longer is harder, attention cost"
+    difficulty: intermediate
+    interview_angle: "Architecture decision driver"
+
+  - day: 35
+    topic: "Prompt Engineering Basics"
+    focus: "Clear instructions, examples, structure"
+    difficulty: intermediate
+    interview_angle: "Day-one AI Eng skill"
+
+  - day: 36
+    topic: "Few-shot vs Zero-shot Prompting"
+    focus: "When examples help, when they hurt"
+    difficulty: intermediate
+    interview_angle: "Standard prompting technique"
+
+  - day: 37
+    topic: "Chain-of-Thought Prompting"
+    focus: "Let it think out loud, when CoT improves accuracy"
+    difficulty: intermediate
+    interview_angle: "Often-cited technique"
+
+  - day: 38
+    topic: "System Prompts vs User Prompts"
+    focus: "Role separation, persona, instruction hierarchy"
+    difficulty: intermediate
+    interview_angle: "API design pattern"
+
+  - day: 39
+    topic: "Hallucinations"
+    focus: "Why they happen, how to reduce, how to detect"
+    difficulty: intermediate
+    interview_angle: "Number one production concern"
+
+  - day: 40
+    topic: "Structured Outputs and JSON Mode"
+    focus: "Schema-constrained generation, why it matters for tools"
+    difficulty: intermediate
+    interview_angle: "Production reliability"
+
+  - day: 41
+    topic: "Embeddings for Retrieval"
+    focus: "Sentence embeddings, cosine similarity, semantic search"
+    difficulty: intermediate
+    interview_angle: "RAG foundation"
+
+  - day: 42
+    topic: "Vector Databases"
+    focus: "FAISS, Chroma, Pinecone — what they actually do"
+    difficulty: intermediate
+    interview_angle: "RAG infrastructure"
+
+  - day: 43
+    topic: "Approximate Nearest Neighbor Search (HNSW, IVF)"
+    focus: "Why exact search doesn't scale, recall vs latency tradeoff"
+    difficulty: advanced
+    interview_angle: "Vector DB internals"
+
+  - day: 44
+    topic: "Retrieval-Augmented Generation (RAG)"
+    focus: "Retrieve then generate, when it beats fine-tuning"
+    difficulty: intermediate
+    interview_angle: "Most common AI Eng project"
+
+  - day: 45
+    topic: "Chunking Strategies"
+    focus: "Fixed size, semantic, recursive, with overlap"
+    difficulty: intermediate
+    interview_angle: "Single biggest RAG quality lever"
+
+  - day: 46
+    topic: "Hybrid Search (BM25 + Dense)"
+    focus: "Why combining lexical and semantic wins"
+    difficulty: advanced
+    interview_angle: "Production RAG upgrade"
+
+  - day: 47
+    topic: "Re-ranking"
+    focus: "Cross-encoders, BGE reranker, why two-stage retrieval helps"
+    difficulty: advanced
+    interview_angle: "RAG quality maximizer"
+
+  - day: 48
+    topic: "Query Rewriting and HyDE"
+    focus: "Improving the question before retrieval"
+    difficulty: advanced
+    interview_angle: "Advanced RAG technique"
+
+  - day: 49
+    topic: "Fine-tuning vs Prompting vs RAG"
+    focus: "Decision framework for each"
+    difficulty: intermediate
+    interview_angle: "Common architecture question"
+
+  - day: 50
+    topic: "Parameter-Efficient Fine-tuning (LoRA, QLoRA)"
+    focus: "Why we don't update all weights, adapter intuition"
+    difficulty: advanced
+    interview_angle: "Modern fine-tuning standard"
+
+  - day: 51
+    topic: "Instruction Tuning"
+    focus: "Turning a base model into a helpful one"
+    difficulty: advanced
+    interview_angle: "How ChatGPT/Claude got useful"
+
+  - day: 52
+    topic: "RLHF (Reinforcement Learning from Human Feedback)"
+    focus: "Reward model + PPO, intuition not equations"
+    difficulty: advanced
+    interview_angle: "Alignment cornerstone"
+
+  - day: 53
+    topic: "DPO (Direct Preference Optimization)"
+    focus: "Why DPO replaced PPO in many pipelines"
+    difficulty: advanced
+    interview_angle: "Recent technique, shows currency"
+
+  - day: 54
+    topic: "Constitutional AI"
+    focus: "Anthropic's self-critique approach, principles-based training"
+    difficulty: advanced
+    interview_angle: "Anthropic interview prep specifically"
+
+  - day: 55
+    topic: "Mixture of Experts (MoE)"
+    focus: "Sparse activation, why MoE scales well"
+    difficulty: advanced
+    interview_angle: "Modern frontier model architecture"
+
+  - day: 56
+    topic: "KV Caching"
+    focus: "Why generation gets faster mid-response"
+    difficulty: advanced
+    interview_angle: "Inference optimization"
+
+  - day: 57
+    topic: "Quantization (INT8, INT4, GPTQ, AWQ)"
+    focus: "Smaller models, minor quality loss"
+    difficulty: advanced
+    interview_angle: "Edge deployment, cost reduction"
+
+  - day: 58
+    topic: "Speculative Decoding"
+    focus: "Small model drafts, big model verifies"
+    difficulty: advanced
+    interview_angle: "Latency optimization technique"
+
+  - day: 59
+    topic: "Distillation"
+    focus: "Big teacher, small student, knowledge transfer"
+    difficulty: advanced
+    interview_angle: "Production cost reduction"
+
+  - day: 60
+    topic: "Evals: LLM-as-Judge"
+    focus: "Using one LLM to grade another, pitfalls"
+    difficulty: advanced
+    interview_angle: "Critical AI Eng skill"
+
+phase_3_ai_engineering:
+  - day: 61
+    topic: "What is an AI Agent?"
+    focus: "LLM + tools + loop, not just chat"
+    difficulty: intermediate
+    interview_angle: "Defines the AI Eng role"
+
+  - day: 62
+    topic: "Tool Use / Function Calling"
+    focus: "Schemas, the agent loop, tool results"
+    difficulty: intermediate
+    interview_angle: "Foundation of agent work"
+
+  - day: 63
+    topic: "ReAct Pattern"
+    focus: "Reason then Act, why interleaving works"
+    difficulty: intermediate
+    interview_angle: "Classic agent design"
+
+  - day: 64
+    topic: "Model Context Protocol (MCP)"
+    focus: "Universal tool layer, client-server, why it matters"
+    difficulty: advanced
+    interview_angle: "Hot 2026 topic, must know"
+
+  - day: 65
+    topic: "MCP Transports: stdio and Streamable HTTP"
+    focus: "Local vs remote servers, when to pick each"
+    difficulty: advanced
+    interview_angle: "MCP architecture decisions"
+
+  - day: 66
+    topic: "MCP Primitives: Tools, Resources, Prompts"
+    focus: "What each is for, with one example"
+    difficulty: advanced
+    interview_angle: "MCP design"
+
+  - day: 67
+    topic: "Multi-Agent Systems: Supervisor Pattern"
+    focus: "One coordinator, many workers, when it wins"
+    difficulty: advanced
+    interview_angle: "Production agent architecture"
+
+  - day: 68
+    topic: "Multi-Agent Systems: Swarm Pattern"
+    focus: "Peer agents, handoffs, when it beats supervisor"
+    difficulty: advanced
+    interview_angle: "Multi-agent tradeoffs"
+
+  - day: 69
+    topic: "Agent Memory: Short-term vs Long-term"
+    focus: "Context window vs external store, retrieval triggers"
+    difficulty: advanced
+    interview_angle: "Stateful agent design"
+
+  - day: 70
+    topic: "Planning and Task Decomposition"
+    focus: "Breaking work into steps, plan-then-execute"
+    difficulty: advanced
+    interview_angle: "Complex agent capability"
+
+  - day: 71
+    topic: "Evals for Agents: Tool Correctness, Task Completion"
+    focus: "Beyond accuracy, did it use the right tools"
+    difficulty: advanced
+    interview_angle: "Critical AI Eng deliverable"
+
+  - day: 72
+    topic: "Evals for RAG: Faithfulness, Context Relevance, Answer Relevance"
+    focus: "The RAGAS triad, what each catches"
+    difficulty: advanced
+    interview_angle: "RAG quality measurement"
+
+  - day: 73
+    topic: "Golden Datasets"
+    focus: "Building them, sizing them, when to refresh"
+    difficulty: advanced
+    interview_angle: "AI Eng deliverable"
+
+  - day: 74
+    topic: "DeepEval and Inspect AI"
+    focus: "When to use each, pytest integration"
+    difficulty: advanced
+    interview_angle: "Named tools in JDs"
+
+  - day: 75
+    topic: "Observability: Traces, Spans, Metrics"
+    focus: "OpenTelemetry for LLMs, what to trace"
+    difficulty: advanced
+    interview_angle: "Production AI requirement"
+
+  - day: 76
+    topic: "Langfuse, LangSmith, Arize Phoenix"
+    focus: "Comparing the three, when each wins"
+    difficulty: advanced
+    interview_angle: "Tooling literacy"
+
+  - day: 77
+    topic: "Cost and Latency Optimization"
+    focus: "Model routing, caching, batching, streaming"
+    difficulty: advanced
+    interview_angle: "Senior AI Eng concern"
+
+  - day: 78
+    topic: "Prompt Caching"
+    focus: "Reusing prefix computation, 90% cost reduction"
+    difficulty: advanced
+    interview_angle: "Anthropic-specific feature"
+
+  - day: 79
+    topic: "Streaming Responses"
+    focus: "TTFT vs total latency, UX implications"
+    difficulty: advanced
+    interview_angle: "Production UX"
+
+  - day: 80
+    topic: "Guardrails and Safety Layers"
+    focus: "Input filtering, output validation, jailbreak detection"
+    difficulty: advanced
+    interview_angle: "Responsible deployment"
+
+  - day: 81
+    topic: "Prompt Injection"
+    focus: "Direct vs indirect, why retrieval makes it worse"
+    difficulty: advanced
+    interview_angle: "Top 2026 security concern"
+
+  - day: 82
+    topic: "Output Schema Validation (Pydantic)"
+    focus: "Failing closed when the model misformats"
+    difficulty: advanced
+    interview_angle: "Production reliability"
+
+  - day: 83
+    topic: "Vector DB Choices in Production"
+    focus: "pgvector vs Pinecone vs Weaviate vs Qdrant"
+    difficulty: advanced
+    interview_angle: "Architecture decision"
+
+  - day: 84
+    topic: "Hosting LLMs: API vs Self-hosted (vLLM, TGI)"
+    focus: "When self-hosting pays off, throughput math"
+    difficulty: advanced
+    interview_angle: "Infrastructure decision"
+
+  - day: 85
+    topic: "Frontier vs Open-Source Models"
+    focus: "Claude/GPT vs Llama/Qwen, tradeoff matrix"
+    difficulty: advanced
+    interview_angle: "Strategy question"
+
+  - day: 86
+    topic: "Multimodal Models"
+    focus: "Vision-language models, image inputs, OCR alternative"
+    difficulty: advanced
+    interview_angle: "Expanding capability surface"
+
+  - day: 87
+    topic: "Agent Skills (Anthropic)"
+    focus: "SKILL.md, progressive disclosure, vs MCP"
+    difficulty: advanced
+    interview_angle: "Late-2025 new standard"
+
+  - day: 88
+    topic: "Computer Use and Browser Agents"
+    focus: "Pixel-level control, when to use vs APIs"
+    difficulty: advanced
+    interview_angle: "Frontier capability"
+
+  - day: 89
+    topic: "Production Failure Modes"
+    focus: "Hallucination, drift, cost spikes, latency tails"
+    difficulty: advanced
+    interview_angle: "On-call mindset"
+
+  - day: 90
+    topic: "Putting It All Together: Designing an AI System End-to-End"
+    focus: "From requirements to evals to deployment, a checklist"
+    difficulty: advanced
+    interview_angle: "System design interview"

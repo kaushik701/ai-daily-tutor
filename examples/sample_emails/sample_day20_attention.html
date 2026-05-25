@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Day 20: Attention Is All You Need (Literally)</title>
+</head>
+<body style="margin:0; padding:0; background-color:#f5f5f7; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; color:#1d1d1f; line-height:1.6;">
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background-color:#f5f5f7;">
+    <tr>
+      <td align="center" style="padding:32px 16px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width:640px; background:#ffffff; border-radius:12px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+
+          <!-- Header strip -->
+          <tr>
+            <td style="background:linear-gradient(90deg, #0a84ff 0%, #5e5ce6 100%); padding:20px 28px;">
+              <div style="font-size:13px; color:#ffffffcc; letter-spacing:0.5px; text-transform:uppercase;">
+                AI Daily Tutor &middot; Day 20 of 90 &middot; ML/DL Fundamentals
+              </div>
+              <div style="font-size:22px; font-weight:600; color:#ffffff; margin-top:6px;">
+                Day 20: Attention Is All You Need (Literally)
+              </div>
+            </td>
+          </tr>
+
+          <!-- TL;DR -->
+          <tr>
+            <td style="padding:28px 28px 0 28px;">
+              <div style="background:#f0f4ff; border-left:4px solid #0a84ff; padding:14px 16px; border-radius:6px;">
+                <strong style="color:#0a84ff; font-size:13px; text-transform:uppercase; letter-spacing:0.5px;">TL;DR</strong>
+                <div style="margin-top:6px; font-size:15px; color:#1d1d1f;">Attention lets a model decide which parts of its input matter most for each part of its output.</div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Plain English -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">In plain English</h2>
+              <div style="font-size:15px; color:#3a3a3c;">
+                Imagine you are translating the English sentence "The cat sat on the mat" into French. When you write the French word for "sat", you need to look back at "cat" (who sat?) more than at "the" or "on". Attention is the mechanism that learns these look-back weights automatically.</div><div style="font-size:15px; color:#3a3a3c; margin-top:12px;">Formally, attention takes three things: a Query (what am I looking for?), Keys (what is each input element offering?), and Values (the actual content). It computes how well each Query matches each Key, normalizes those scores with softmax, and uses them to take a weighted sum of the Values. That weighted sum is the output.
+              </div>
+            </td>
+          </tr>
+
+          <!-- Analogy -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">Think of it this way</h2>
+              <div style="font-size:15px; color:#3a3a3c; background:#fffaf0; padding:14px 16px; border-radius:6px; border-left:4px solid #ff9f0a;">
+                Attention is like skimming a textbook before a test. Your eyes do not give equal weight to every page; you spend more time on the chapters most relevant to the question. The Query is your question, the Keys are the chapter titles, and the Values are the actual content you absorb.
+              </div>
+            </td>
+          </tr>
+
+          
+          <!-- Code -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">In code</h2>
+              <pre style="background:#1d1d1f; color:#f5f5f7; padding:16px; border-radius:8px; font-family:'SF Mono', Menlo, Monaco, 'Courier New', monospace; font-size:13px; line-height:1.5; overflow-x:auto; margin:0;"><code>import torch
+import torch.nn.functional as F
+
+# Q, K, V each shape (seq_len, d_model)
+def attention(Q, K, V):
+    scores = Q @ K.T / (K.shape[-1] ** 0.5)
+    weights = F.softmax(scores, dim=-1)
+    return weights @ V</code></pre>
+              
+              <div style="font-size:14px; color:#6e6e73; margin-top:8px; font-style:italic;">Three lines: dot-product scores, scale by sqrt(d_k) for stable gradients, softmax to get weights, then weighted sum of values.</div>
+              
+            </td>
+          </tr>
+          
+
+          <!-- Why it matters -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">Why it matters for AI Eng interviews</h2>
+              <div style="font-size:15px; color:#3a3a3c;">Attention is the single most important concept in modern AI. Every transformer, every LLM, every RAG re-ranker, every multimodal model uses it. Interviewers ask about Q/K/V because it tests whether you understand the mechanism or only the buzzword. Be ready to draw it on a whiteboard.</div>
+            </td>
+          </tr>
+
+          <!-- Takeaway -->
+          <tr>
+            <td style="padding:24px 28px 28px 28px;">
+              <div style="background:#1d1d1f; color:#ffffff; padding:16px 18px; border-radius:8px; font-size:15px;">
+                <strong style="color:#30d158; font-size:12px; text-transform:uppercase; letter-spacing:0.5px;">One thing to remember</strong>
+                <div style="margin-top:6px;">Attention = softmax(Q · Kᵀ / √d) · V — three matmuls and a normalization, that is all.</div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:16px 28px; background:#f5f5f7; border-top:1px solid #e5e5ea;">
+              <div style="font-size:12px; color:#8e8e93; text-align:center;">
+                AI Daily Tutor &middot; built with Claude API + GitHub Actions
+                <br />
+                <a href="https://github.com/kaushik/ai-daily-tutor" style="color:#0a84ff; text-decoration:none;">View source &amp; archive on GitHub</a>
+              </div>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
