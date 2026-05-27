@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Day 3: Training, Validation, and Test Sets in Machine Learning</title>
+</head>
+<body style="margin:0; padding:0; background-color:#f5f5f7; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; color:#1d1d1f; line-height:1.6;">
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background-color:#f5f5f7;">
+    <tr>
+      <td align="center" style="padding:32px 16px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width:640px; background:#ffffff; border-radius:12px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+
+          <!-- Header strip -->
+          <tr>
+            <td style="background:linear-gradient(90deg, #0a84ff 0%, #5e5ce6 100%); padding:20px 28px;">
+              <div style="font-size:13px; color:#ffffffcc; letter-spacing:0.5px; text-transform:uppercase;">
+                AI Daily Tutor &middot; Day 3 of 90 &middot; ML/DL Fundamentals
+              </div>
+              <div style="font-size:22px; font-weight:600; color:#ffffff; margin-top:6px;">
+                Day 3: Training, Validation, and Test Sets in Machine Learning
+              </div>
+            </td>
+          </tr>
+
+          <!-- TL;DR -->
+          <tr>
+            <td style="padding:28px 28px 0 28px;">
+              <div style="background:#f0f4ff; border-left:4px solid #0a84ff; padding:14px 16px; border-radius:6px;">
+                <strong style="color:#0a84ff; font-size:13px; text-transform:uppercase; letter-spacing:0.5px;">TL;DR</strong>
+                <div style="margin-top:6px; font-size:15px; color:#1d1d1f;">The division of data into training, validation, and test sets is crucial for evaluating the performance of machine learning models and preventing data leakage.</div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Plain English -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">In plain English</h2>
+              <div style="font-size:15px; color:#3a3a3c;">
+                When building a machine learning model, it's essential to split your available data into three parts: training, validation, and test sets. The training set is used to teach the model about the relationships between the data points. The validation set is used to fine-tune the model's parameters and evaluate its performance during the training process. The test set, on the other hand, is used to assess the model's performance on unseen data, providing an unbiased estimate of its accuracy.</div><div style="font-size:15px; color:#3a3a3c; margin-top:12px;"> Data leakage occurs when information from the test set somehow influences the training process, which can lead to overly optimistic results. This can happen when the model is trained on data that includes information that will not be available during deployment. For instance, if a model is trained to predict stock prices based on historical data that includes future events, it will not perform well when faced with real-world, unseen data.</div><div style="font-size:15px; color:#3a3a3c; margin-top:12px;"> To avoid data leakage, it's critical to ensure that the data used for training, validation, and testing are properly separated and that no information is shared between them.
+              </div>
+            </td>
+          </tr>
+
+          <!-- Analogy -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">Think of it this way</h2>
+              <div style="font-size:15px; color:#3a3a3c; background:#fffaf0; padding:14px 16px; border-radius:6px; border-left:4px solid #ff9f0a;">
+                Think of training a machine learning model like training a chef. The training set is like the recipes and cooking techniques the chef learns in culinary school. The validation set is like the practice dishes the chef prepares to refine their skills and adjust their techniques. The test set is like the final exam, where the chef's skills are evaluated in a real-world setting, such as a busy restaurant kitchen, to see how they perform under pressure.
+              </div>
+            </td>
+          </tr>
+
+          
+
+          <!-- Why it matters -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">Why it matters for AI Eng interviews</h2>
+              <div style="font-size:15px; color:#3a3a3c;">Understanding the importance of training, validation, and test sets is crucial for AI engineering and ML engineering roles, as it directly impacts the model's performance and reliability in production environments. Job descriptions often mention requirements such as model evaluation, fine-tuning, and ensuring the absence of data leakage, highlighting the need for professionals who can properly split and utilize their data to develop robust and accurate models.</div>
+            </td>
+          </tr>
+
+          <!-- Takeaway -->
+          <tr>
+            <td style="padding:24px 28px 28px 28px;">
+              <div style="background:#1d1d1f; color:#ffffff; padding:16px 18px; border-radius:8px; font-size:15px;">
+                <strong style="color:#30d158; font-size:12px; text-transform:uppercase; letter-spacing:0.5px;">One thing to remember</strong>
+                <div style="margin-top:6px;">Always keep your training, validation, and test sets separate to prevent data leakage and ensure your model's performance is accurately evaluated.</div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:16px 28px; background:#f5f5f7; border-top:1px solid #e5e5ea;">
+              <div style="font-size:12px; color:#8e8e93; text-align:center;">
+                AI Daily Tutor &middot; built with Claude API + GitHub Actions
+                <br />
+                <a href="https://github.com/kaushik701/ai-daily-tutor" style="color:#0a84ff; text-decoration:none;">View source &amp; archive on GitHub</a>
+              </div>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
