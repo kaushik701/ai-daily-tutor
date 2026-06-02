@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Day 8: Introduction to Linear Regression</title>
+</head>
+<body style="margin:0; padding:0; background-color:#f5f5f7; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; color:#1d1d1f; line-height:1.6;">
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background-color:#f5f5f7;">
+    <tr>
+      <td align="center" style="padding:32px 16px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width:640px; background:#ffffff; border-radius:12px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+
+          <!-- Header strip -->
+          <tr>
+            <td style="background:linear-gradient(90deg, #0a84ff 0%, #5e5ce6 100%); padding:20px 28px;">
+              <div style="font-size:13px; color:#ffffffcc; letter-spacing:0.5px; text-transform:uppercase;">
+                AI Daily Tutor &middot; Day 8 of 90 &middot; ML/DL Fundamentals
+              </div>
+              <div style="font-size:22px; font-weight:600; color:#ffffff; margin-top:6px;">
+                Day 8: Introduction to Linear Regression
+              </div>
+            </td>
+          </tr>
+
+          <!-- TL;DR -->
+          <tr>
+            <td style="padding:28px 28px 0 28px;">
+              <div style="background:#f0f4ff; border-left:4px solid #0a84ff; padding:14px 16px; border-radius:6px;">
+                <strong style="color:#0a84ff; font-size:13px; text-transform:uppercase; letter-spacing:0.5px;">TL;DR</strong>
+                <div style="margin-top:6px; font-size:15px; color:#1d1d1f;">Linear regression is a fundamental machine learning model that predicts a continuous output variable based on one or more input features.</div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Plain English -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">In plain English</h2>
+              <div style="font-size:15px; color:#3a3a3c;">
+                Linear regression is a way to model the relationship between a dependent variable and one or more independent variables. The goal is to create a linear equation that best predicts the value of the dependent variable. </div><div style="font-size:15px; color:#3a3a3c; margin-top:12px;"> The model learns by adjusting the weights and bias of the equation to minimize the difference between predicted and actual values. </div><div style="font-size:15px; color:#3a3a3c; margin-top:12px;"> The weights in the model represent the change in the dependent variable for a one-unit change in the independent variable, while the bias term is the value of the dependent variable when all independent variables are zero.
+              </div>
+            </td>
+          </tr>
+
+          <!-- Analogy -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">Think of it this way</h2>
+              <div style="font-size:15px; color:#3a3a3c; background:#fffaf0; padding:14px 16px; border-radius:6px; border-left:4px solid #ff9f0a;">
+                Think of linear regression like trying to hit a target with a bow and arrow. The independent variables are like the wind direction and speed, and the dependent variable is the arrow's trajectory. The model adjusts the weights (wind compensation) and bias (initial aim) to hit the target (make accurate predictions).
+              </div>
+            </td>
+          </tr>
+
+          
+          <!-- Code -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">In code</h2>
+              <pre style="background:#1d1d1f; color:#f5f5f7; padding:16px; border-radius:8px; font-family:'SF Mono', Menlo, Monaco, 'Courier New', monospace; font-size:13px; line-height:1.5; overflow-x:auto; margin:0;"><code>import numpy as np
+X = np.array([1, 2, 3, 4, 5])
+Y = 2 * X + 1
+print(Y)</code></pre>
+              
+              <div style="font-size:14px; color:#6e6e73; margin-top:8px; font-style:italic;">This code example demonstrates a simple linear regression equation where Y is predicted based on X with a weight of 2 and a bias of 1.</div>
+              
+            </td>
+          </tr>
+          
+
+          <!-- Why it matters -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">Why it matters for AI Eng interviews</h2>
+              <div style="font-size:15px; color:#3a3a3c;">Linear regression is a baseline model for any tabular problem and is often used as a starting point for more complex models. It is also a key component in many AI Engineering and ML Engineering roles, such as building recommender systems, forecasting models, and evaluating model performance (e.g., RAG, agent-based systems, and model fine-tuning). Understanding linear regression is essential for working with models in production and addressing concerns like model interpretability, observability, and maintainability.</div>
+            </td>
+          </tr>
+
+          <!-- Takeaway -->
+          <tr>
+            <td style="padding:24px 28px 28px 28px;">
+              <div style="background:#1d1d1f; color:#ffffff; padding:16px 18px; border-radius:8px; font-size:15px;">
+                <strong style="color:#30d158; font-size:12px; text-transform:uppercase; letter-spacing:0.5px;">One thing to remember</strong>
+                <div style="margin-top:6px;">The weights in a linear regression model represent the change in the dependent variable for a one-unit change in the independent variable, which is crucial for model interpretation and debugging.</div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:16px 28px; background:#f5f5f7; border-top:1px solid #e5e5ea;">
+              <div style="font-size:12px; color:#8e8e93; text-align:center;">
+                AI Daily Tutor &middot; built with Claude API + GitHub Actions
+                <br />
+                <a href="https://github.com/kaushik701/ai-daily-tutor" style="color:#0a84ff; text-decoration:none;">View source &amp; archive on GitHub</a>
+              </div>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
