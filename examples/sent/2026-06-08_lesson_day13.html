@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Day 13: Understanding Backpropagation for Deep Learning</title>
+</head>
+<body style="margin:0; padding:0; background-color:#f5f5f7; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; color:#1d1d1f; line-height:1.6;">
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background-color:#f5f5f7;">
+    <tr>
+      <td align="center" style="padding:32px 16px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width:640px; background:#ffffff; border-radius:12px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+
+          <!-- Header strip -->
+          <tr>
+            <td style="background:linear-gradient(90deg, #0a84ff 0%, #5e5ce6 100%); padding:20px 28px;">
+              <div style="font-size:13px; color:#ffffffcc; letter-spacing:0.5px; text-transform:uppercase;">
+                AI Daily Tutor &middot; Day 13 of 90 &middot; ML/DL Fundamentals
+              </div>
+              <div style="font-size:22px; font-weight:600; color:#ffffff; margin-top:6px;">
+                Day 13: Understanding Backpropagation for Deep Learning
+              </div>
+            </td>
+          </tr>
+
+          <!-- TL;DR -->
+          <tr>
+            <td style="padding:28px 28px 0 28px;">
+              <div style="background:#f0f4ff; border-left:4px solid #0a84ff; padding:14px 16px; border-radius:6px;">
+                <strong style="color:#0a84ff; font-size:13px; text-transform:uppercase; letter-spacing:0.5px;">TL;DR</strong>
+                <div style="margin-top:6px; font-size:15px; color:#1d1d1f;">Backpropagation is an essential algorithm in machine learning that enables the training of deep neural networks by efficiently computing the gradients of the loss function with respect to the model's parameters.</div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Plain English -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">In plain English</h2>
+              <div style="font-size:15px; color:#3a3a3c;">
+                Backpropagation is a method used to train artificial neural networks. It works by first making a prediction, then comparing it to the actual outcome to calculate the error. This error is then used to adjust the model's parameters to improve future predictions.</div><div style="font-size:15px; color:#3a3a3c; margin-top:12px;"> The process involves moving backwards through the network, adjusting the strength of the connections between nodes (or neurons) based on their contribution to the error. This adjustment is what allows the model to learn from its mistakes and improve over time.</div><div style="font-size:15px; color:#3a3a3c; margin-top:12px;"> The key concept here is the 'chain rule', which is a mathematical formula for computing the derivative of a composite function. In the context of backpropagation, it helps in calculating how much each node's output contributed to the final error, thus guiding the adjustments needed in the model's parameters.
+              </div>
+            </td>
+          </tr>
+
+          <!-- Analogy -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">Think of it this way</h2>
+              <div style="font-size:15px; color:#3a3a3c; background:#fffaf0; padding:14px 16px; border-radius:6px; border-left:4px solid #ff9f0a;">
+                Imagine you're a chef trying to perfect a recipe. You taste the dish and find it too salty. To fix this, you don't just reduce the amount of salt you add but also consider how each ingredient interacts with salt to affect the overall taste. Similarly, backpropagation considers how each node in the network contributes to the final error, allowing for precise adjustments to improve the model's predictions.
+              </div>
+            </td>
+          </tr>
+
+          
+
+          <!-- Why it matters -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">Why it matters for AI Eng interviews</h2>
+              <div style="font-size:15px; color:#3a3a3c;">Understanding backpropagation is crucial for AI Engineering and ML Engineering roles, especially when working with models that require fine-tuning or when evaluating model performance. It directly relates to concepts like model training, observability, and production concerns, such as ensuring models are trainable, efficient, and scalable. Moreover, it's essential for tasks involving reinforcement learning agents (RAG) and model control planes (MCP), where backpropagation plays a key role in how models learn from their environment and adapt to new situations.</div>
+            </td>
+          </tr>
+
+          <!-- Takeaway -->
+          <tr>
+            <td style="padding:24px 28px 28px 28px;">
+              <div style="background:#1d1d1f; color:#ffffff; padding:16px 18px; border-radius:8px; font-size:15px;">
+                <strong style="color:#30d158; font-size:12px; text-transform:uppercase; letter-spacing:0.5px;">One thing to remember</strong>
+                <div style="margin-top:6px;">Backpropagation is essentially about using the chain rule to compute gradients that guide the adjustment of a model's parameters to minimize the error between predictions and actual outcomes.</div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:16px 28px; background:#f5f5f7; border-top:1px solid #e5e5ea;">
+              <div style="font-size:12px; color:#8e8e93; text-align:center;">
+                AI Daily Tutor &middot; built with Claude API + GitHub Actions
+                <br />
+                <a href="https://github.com/kaushik701/ai-daily-tutor" style="color:#0a84ff; text-decoration:none;">View source &amp; archive on GitHub</a>
+              </div>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
