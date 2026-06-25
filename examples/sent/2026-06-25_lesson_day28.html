@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Day 28: Understanding ROC, AUC, and Precision-Recall Curves</title>
+</head>
+<body style="margin:0; padding:0; background-color:#f5f5f7; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; color:#1d1d1f; line-height:1.6;">
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background-color:#f5f5f7;">
+    <tr>
+      <td align="center" style="padding:32px 16px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width:640px; background:#ffffff; border-radius:12px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+
+          <!-- Header strip -->
+          <tr>
+            <td style="background:linear-gradient(90deg, #0a84ff 0%, #5e5ce6 100%); padding:20px 28px;">
+              <div style="font-size:13px; color:#ffffffcc; letter-spacing:0.5px; text-transform:uppercase;">
+                AI Daily Tutor &middot; Day 28 of 90 &middot; ML/DL Fundamentals
+              </div>
+              <div style="font-size:22px; font-weight:600; color:#ffffff; margin-top:6px;">
+                Day 28: Understanding ROC, AUC, and Precision-Recall Curves
+              </div>
+            </td>
+          </tr>
+
+          <!-- TL;DR -->
+          <tr>
+            <td style="padding:28px 28px 0 28px;">
+              <div style="background:#f0f4ff; border-left:4px solid #0a84ff; padding:14px 16px; border-radius:6px;">
+                <strong style="color:#0a84ff; font-size:13px; text-transform:uppercase; letter-spacing:0.5px;">TL;DR</strong>
+                <div style="margin-top:6px; font-size:15px; color:#1d1d1f;">ROC, AUC, and Precision-Recall Curves are essential metrics for evaluating the performance of classification models, especially when dealing with imbalanced datasets.</div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Plain English -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">In plain English</h2>
+              <div style="font-size:15px; color:#3a3a3c;">
+                When building classification models, it's crucial to evaluate their performance using various metrics. ROC (Receiver Operating Characteristic) curves plot the True Positive Rate against the False Positive Rate at different thresholds, providing a comprehensive view of a model's performance. AUC (Area Under the Curve) measures the area under the ROC curve, giving a single number to compare models.</div><div style="font-size:15px; color:#3a3a3c; margin-top:12px;"> However, AUC can be misleading in certain situations, such as when dealing with highly imbalanced datasets or when the cost of false positives and false negatives is not equal. In these cases, Precision-Recall curves can provide a more informative evaluation of a model's performance. </div><div style="font-size:15px; color:#3a3a3c; margin-top:12px;"> Threshold-independent evaluation metrics like AUC and Precision-Recall curves are valuable because they allow us to assess a model's performance without having to choose a specific threshold.
+              </div>
+            </td>
+          </tr>
+
+          <!-- Analogy -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">Think of it this way</h2>
+              <div style="font-size:15px; color:#3a3a3c; background:#fffaf0; padding:14px 16px; border-radius:6px; border-left:4px solid #ff9f0a;">
+                Imagine you're a music curator trying to create a playlist with a mix of new and familiar songs. You want to balance the number of new songs (true positives) with the number of familiar songs (true negatives) to keep your listeners engaged. The ROC curve would be like plotting the number of new songs against the number of familiar songs that are mistakenly included, while the AUC would measure how well your playlist balances these two factors.
+              </div>
+            </td>
+          </tr>
+
+          
+
+          <!-- Why it matters -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">Why it matters for AI Eng interviews</h2>
+              <div style="font-size:15px; color:#3a3a3c;">Understanding ROC, AUC, and Precision-Recall Curves is essential for AI Engineering and ML Engineering roles, especially when working with classification models. Job descriptions often mention requirements like model evaluation, threshold tuning, and performance optimization, which are directly related to these metrics. Being able to interpret and use these metrics effectively can help you build more accurate and reliable models, which is critical for applications like recommender systems, fraud detection, and medical diagnosis.</div>
+            </td>
+          </tr>
+
+          <!-- Takeaway -->
+          <tr>
+            <td style="padding:24px 28px 28px 28px;">
+              <div style="background:#1d1d1f; color:#ffffff; padding:16px 18px; border-radius:8px; font-size:15px;">
+                <strong style="color:#30d158; font-size:12px; text-transform:uppercase; letter-spacing:0.5px;">One thing to remember</strong>
+                <div style="margin-top:6px;">AUC can be misleading in certain situations, such as imbalanced datasets, and Precision-Recall curves can provide a more informative evaluation of a model's performance.</div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:16px 28px; background:#f5f5f7; border-top:1px solid #e5e5ea;">
+              <div style="font-size:12px; color:#8e8e93; text-align:center;">
+                AI Daily Tutor &middot; built with Claude API + GitHub Actions
+                <br />
+                <a href="https://github.com/kaushik701/ai-daily-tutor" style="color:#0a84ff; text-decoration:none;">View source &amp; archive on GitHub</a>
+              </div>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
