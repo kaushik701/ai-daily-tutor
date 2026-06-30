@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Day 32: Autoregressive Generation in LLMs</title>
+</head>
+<body style="margin:0; padding:0; background-color:#f5f5f7; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; color:#1d1d1f; line-height:1.6;">
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background-color:#f5f5f7;">
+    <tr>
+      <td align="center" style="padding:32px 16px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width:640px; background:#ffffff; border-radius:12px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+
+          <!-- Header strip -->
+          <tr>
+            <td style="background:linear-gradient(90deg, #0a84ff 0%, #5e5ce6 100%); padding:20px 28px;">
+              <div style="font-size:13px; color:#ffffffcc; letter-spacing:0.5px; text-transform:uppercase;">
+                AI Daily Tutor &middot; Day 32 of 90 &middot; LLM Concepts
+              </div>
+              <div style="font-size:22px; font-weight:600; color:#ffffff; margin-top:6px;">
+                Day 32: Autoregressive Generation in LLMs
+              </div>
+            </td>
+          </tr>
+
+          <!-- TL;DR -->
+          <tr>
+            <td style="padding:28px 28px 0 28px;">
+              <div style="background:#f0f4ff; border-left:4px solid #0a84ff; padding:14px 16px; border-radius:6px;">
+                <strong style="color:#0a84ff; font-size:13px; text-transform:uppercase; letter-spacing:0.5px;">TL;DR</strong>
+                <div style="margin-top:6px; font-size:15px; color:#1d1d1f;">Autoregressive generation in Large Language Models (LLMs) refers to the process of generating text one token at a time, where each new token is predicted based on the context of the previous tokens.</div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Plain English -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">In plain English</h2>
+              <div style="font-size:15px; color:#3a3a3c;">
+                Autoregressive generation is a method used by LLMs to create text. It works by predicting one token at a time, with each prediction being based on the tokens that have come before it. This process is repeated until a stopping criterion is met, such as reaching a maximum sequence length.</div><div style="font-size:15px; color:#3a3a3c; margin-top:12px;">The key point about autoregressive generation is that it is sequential. The model cannot generate the next token without knowing the previous ones, which means that the generation process can be slow for long sequences. This is because the model has to make a prediction for each token, one at a time, and it cannot parallelize this process.</div><div style="font-size:15px; color:#3a3a3c; margin-top:12px;">This sequential nature of autoregressive generation has significant implications for the efficiency and cost of using LLMs, especially when generating long pieces of text.
+              </div>
+            </td>
+          </tr>
+
+          <!-- Analogy -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">Think of it this way</h2>
+              <div style="font-size:15px; color:#3a3a3c; background:#fffaf0; padding:14px 16px; border-radius:6px; border-left:4px solid #ff9f0a;">
+                A good analogy for autoregressive generation is a person writing a story one word at a time, where each word is chosen based on the context of the words that have come before it. Just as the writer cannot write the next word without knowing the previous ones, an LLM using autoregressive generation cannot generate the next token without knowing the context of the previous tokens.
+              </div>
+            </td>
+          </tr>
+
+          
+
+          <!-- Why it matters -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">Why it matters for AI Eng interviews</h2>
+              <div style="font-size:15px; color:#3a3a3c;">Autoregressive generation affects every LLM cost decision because it directly impacts the latency and computational resources required to generate text. This, in turn, affects the cost of using LLMs in production environments, where minimizing latency and computational resources is crucial. As a result, understanding autoregressive generation is essential for AI engineers and ML engineers working with LLMs, as it informs decisions around model architecture, optimization, and deployment strategies, all of which are critical for achieving high performance and low costs in production environments, as highlighted in job descriptions requiring expertise in RAG, model fine-tuning, and production concerns.</div>
+            </td>
+          </tr>
+
+          <!-- Takeaway -->
+          <tr>
+            <td style="padding:24px 28px 28px 28px;">
+              <div style="background:#1d1d1f; color:#ffffff; padding:16px 18px; border-radius:8px; font-size:15px;">
+                <strong style="color:#30d158; font-size:12px; text-transform:uppercase; letter-spacing:0.5px;">One thing to remember</strong>
+                <div style="margin-top:6px;">The latency of autoregressive generation scales with the length of the output, making it a critical factor in the design and optimization of LLM-based systems.</div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:16px 28px; background:#f5f5f7; border-top:1px solid #e5e5ea;">
+              <div style="font-size:12px; color:#8e8e93; text-align:center;">
+                AI Daily Tutor &middot; built with Claude API + GitHub Actions
+                <br />
+                <a href="https://github.com/kaushik701/ai-daily-tutor" style="color:#0a84ff; text-decoration:none;">View source &amp; archive on GitHub</a>
+              </div>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
