@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Day 60: Evaluating LLMs with Another LLM</title>
+</head>
+<body style="margin:0; padding:0; background-color:#f5f5f7; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; color:#1d1d1f; line-height:1.6;">
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background-color:#f5f5f7;">
+    <tr>
+      <td align="center" style="padding:32px 16px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width:640px; background:#ffffff; border-radius:12px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+
+          <!-- Header strip -->
+          <tr>
+            <td style="background:linear-gradient(90deg, #0a84ff 0%, #5e5ce6 100%); padding:20px 28px;">
+              <div style="font-size:13px; color:#ffffffcc; letter-spacing:0.5px; text-transform:uppercase;">
+                AI Daily Tutor &middot; Day 60 of 90 &middot; LLM Concepts
+              </div>
+              <div style="font-size:22px; font-weight:600; color:#ffffff; margin-top:6px;">
+                Day 60: Evaluating LLMs with Another LLM
+              </div>
+            </td>
+          </tr>
+
+          <!-- TL;DR -->
+          <tr>
+            <td style="padding:28px 28px 0 28px;">
+              <div style="background:#f0f4ff; border-left:4px solid #0a84ff; padding:14px 16px; border-radius:6px;">
+                <strong style="color:#0a84ff; font-size:13px; text-transform:uppercase; letter-spacing:0.5px;">TL;DR</strong>
+                <div style="margin-top:6px; font-size:15px; color:#1d1d1f;">Using one Large Language Model (LLM) to evaluate another can provide insights into performance but also introduces potential pitfalls such as bias and inconsistency.</div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Plain English -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">In plain English</h2>
+              <div style="font-size:15px; color:#3a3a3c;">
+                Evaluating the performance of a Large Language Model (LLM) is crucial for understanding its strengths and weaknesses. This can be done by using another LLM as a judge, where the judging model assesses the quality of the output produced by the model being evaluated. However, this approach requires careful consideration because the judging model's own biases and limitations can influence the evaluation results.</div><div style="font-size:15px; color:#3a3a3c; margin-top:12px;"> The process involves training the judging model on a dataset that represents high-quality outputs, so it can recognize and score the outputs from the model being evaluated accordingly. It's essential to ensure that the judging model is fair, reliable, and operates on a comprehensive understanding of what constitutes 'good' performance in the context of the task at hand.</div><div style="font-size:15px; color:#3a3a3c; margin-top:12px;"> Despite these challenges, using one LLM to evaluate another offers a flexible and efficient method for assessing model performance, especially in scenarios where human evaluation is impractical due to scale or time constraints.
+              </div>
+            </td>
+          </tr>
+
+          <!-- Analogy -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">Think of it this way</h2>
+              <div style="font-size:15px; color:#3a3a3c; background:#fffaf0; padding:14px 16px; border-radius:6px; border-left:4px solid #ff9f0a;">
+                This concept can be likened to a master chef judging a cooking competition. Just as the master chef brings their own culinary expertise and biases to the judging table, an LLM judging another LLM brings its own 'culinary' knowledge and biases, influencing how it evaluates the dishes (or in this case, the text outputs) presented to it.
+              </div>
+            </td>
+          </tr>
+
+          
+
+          <!-- Why it matters -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">Why it matters for AI Eng interviews</h2>
+              <div style="font-size:15px; color:#3a3a3c;">Understanding how to effectively use one LLM to evaluate another is critical for AI Engineering roles, especially in tasks that require model fine-tuning, observability, and production deployment. It signals the ability to address concerns around model reliability, consistency, and fairness, all of which are highlighted in job descriptions that mention RAG (Robustness, Adaptability, Generalizability), agents, and model control planes (MCP).</div>
+            </td>
+          </tr>
+
+          <!-- Takeaway -->
+          <tr>
+            <td style="padding:24px 28px 28px 28px;">
+              <div style="background:#1d1d1f; color:#ffffff; padding:16px 18px; border-radius:8px; font-size:15px;">
+                <strong style="color:#30d158; font-size:12px; text-transform:uppercase; letter-spacing:0.5px;">One thing to remember</strong>
+                <div style="margin-top:6px;">The judging LLM's own biases and limitations can significantly impact the evaluation results, making it crucial to carefully select and calibrate the judging model.</div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:16px 28px; background:#f5f5f7; border-top:1px solid #e5e5ea;">
+              <div style="font-size:12px; color:#8e8e93; text-align:center;">
+                AI Daily Tutor &middot; built with Claude API + GitHub Actions
+                <br />
+                <a href="https://github.com/kaushik701/ai-daily-tutor" style="color:#0a84ff; text-decoration:none;">View source &amp; archive on GitHub</a>
+              </div>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
