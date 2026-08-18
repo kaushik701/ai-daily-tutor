@@ -23,7 +23,9 @@ from .curriculum import Topic
 # if this starts throwing model_not_found. CI overrides via the GROQ_MODEL
 # secret (currently openai/gpt-oss-120b); qwen-2.5-32b is the local fallback.
 MODEL = os.environ.get("GROQ_MODEL", "qwen-2.5-32b")
-MAX_TOKENS = 2000
+# gpt-oss-120b is a reasoning model — it spends tokens on hidden reasoning
+# before emitting JSON, so it needs more headroom than a plain instruct model.
+MAX_TOKENS = 6000
 GROQ_BASE_URL = "https://api.groq.com/openai/v1"
 
 
