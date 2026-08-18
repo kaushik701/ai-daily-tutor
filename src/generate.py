@@ -19,9 +19,9 @@ from pydantic import BaseModel, Field, ValidationError
 
 from .curriculum import Topic
 
-# Groq's strongest models for instruction-following + JSON output as of mid-2026.
-# llama-3.3-70b-versatile is the best general-purpose pick on free tier.
-# qwen-2.5-32b is a solid alternative if Llama gives weak code examples.
+# Groq deprecates models periodically — check console.groq.com/docs/models
+# if this starts throwing model_not_found. CI overrides via the GROQ_MODEL
+# secret (currently openai/gpt-oss-120b); qwen-2.5-32b is the local fallback.
 MODEL = os.environ.get("GROQ_MODEL", "qwen-2.5-32b")
 MAX_TOKENS = 2000
 GROQ_BASE_URL = "https://api.groq.com/openai/v1"
