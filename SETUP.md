@@ -54,7 +54,7 @@ Add three secrets:
 | `RESEND_API_KEY` | The `re_...` key from step 3 |
 | `RECIPIENT_EMAIL` | Your Gmail address (e.g. `kaushik@gmail.com`) |
 
-Optional secret: `GROQ_MODEL` if you want to override the default `llama-3.3-70b-versatile`.
+Optional secret: `GROQ_MODEL` if you want to override the default `llama-3.3-70b-versatile`. This repo currently sets it to `openai/gpt-oss-120b` (some Groq models get deprecated over time — check [console.groq.com/docs/models](https://console.groq.com/docs/models) if you hit a `model_not_found` error).
 
 ## ✅ Step 5: Enable Actions and run a test (3 min)
 
@@ -76,7 +76,9 @@ The cron is now active. Tomorrow at 11 AM PT you'll get Day 2 automatically.
 
 **No email arrived**: Check the Actions log. Look for the Resend response — it should contain an `id` if successful. If you see a 403, your Resend API key is wrong. If you see a Groq error, the key is wrong or you've hit a rate limit (wait 1 minute and retry).
 
-**JSON validation errors**: Groq's open-source models sometimes return malformed JSON. The code retries once automatically; if it still fails, try switching `GROQ_MODEL` to `llama-3.1-70b-versatile` or `qwen-2.5-32b`.
+**JSON validation errors**: Groq's open-source models sometimes return malformed JSON. The code retries once automatically; if it still fails, try switching `GROQ_MODEL` to `llama-3.3-70b-versatile` or `qwen-2.5-32b`.
+
+**`model_not_found` / 404 error**: Groq deprecates models periodically. Update the `GROQ_MODEL` secret to a currently supported model from [console.groq.com/docs/models](https://console.groq.com/docs/models) (currently using `openai/gpt-oss-120b`).
 
 **Email landed in spam**: Mark it "Not spam" once. Reply to the email or move it to inbox. Future emails will land correctly.
 
