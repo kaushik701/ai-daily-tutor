@@ -22,7 +22,7 @@ from .curriculum import Topic
 # Groq's strongest models for instruction-following + JSON output as of mid-2026.
 # llama-3.3-70b-versatile is the best general-purpose pick on free tier.
 # qwen-2.5-32b is a solid alternative if Llama gives weak code examples.
-MODEL = os.environ.get("GROQ_MODEL", "llama-3.3-70b-versatile")
+MODEL = os.environ.get("GROQ_MODEL", "qwen-2.5-32b")
 MAX_TOKENS = 2000
 GROQ_BASE_URL = "https://api.groq.com/openai/v1"
 
