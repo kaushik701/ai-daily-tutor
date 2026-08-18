@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Day 73: Golden Datasets</title>
+</head>
+<body style="margin:0; padding:0; background-color:#f5f5f7; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; color:#1d1d1f; line-height:1.6;">
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background-color:#f5f5f7;">
+    <tr>
+      <td align="center" style="padding:32px 16px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width:640px; background:#ffffff; border-radius:12px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+
+          <!-- Header strip -->
+          <tr>
+            <td style="background:linear-gradient(90deg, #0a84ff 0%, #5e5ce6 100%); padding:20px 28px;">
+              <div style="font-size:13px; color:#ffffffcc; letter-spacing:0.5px; text-transform:uppercase;">
+                AI Daily Tutor &middot; Day 73 of 90 &middot; AI Engineering
+              </div>
+              <div style="font-size:22px; font-weight:600; color:#ffffff; margin-top:6px;">
+                Day 73: Golden Datasets
+              </div>
+            </td>
+          </tr>
+
+          <!-- TL;DR -->
+          <tr>
+            <td style="padding:28px 28px 0 28px;">
+              <div style="background:#f0f4ff; border-left:4px solid #0a84ff; padding:14px 16px; border-radius:6px;">
+                <strong style="color:#0a84ff; font-size:13px; text-transform:uppercase; letter-spacing:0.5px;">TL;DR</strong>
+                <div style="margin-top:6px; font-size:15px; color:#1d1d1f;">Golden datasets are curated, high‑quality subsets used to benchmark, monitor, and fine‑tune models in production.</div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Plain English -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">In plain English</h2>
+              <div style="font-size:15px; color:#3a3a3c;">
+                A golden dataset is a small, carefully vetted slice of your larger training or inference data that you treat as a reference point. It should contain examples that are representative of the problem space, free of obvious labeling errors, and stable enough that performance changes on it reflect real model shifts, not data noise.\n\nTo build one, start with a quality filter (minimum length, language detection, label confidence), then sample in a way that preserves class balance or other important dimensions. Size it so that statistical variance is low—often a few hundred to a few thousand rows, depending on label count—and schedule a refresh when the underlying data distribution drifts, new edge cases appear, or after major model releases.
+              </div>
+            </td>
+          </tr>
+
+          <!-- Analogy -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">Think of it this way</h2>
+              <div style="font-size:15px; color:#3a3a3c; background:#fffaf0; padding:14px 16px; border-radius:6px; border-left:4px solid #ff9f0a;">
+                Think of a golden dataset like a chef’s tasting spoonful: a tiny, well‑chosen bite that tells you whether the whole pot of soup is seasoned correctly, without having to taste the entire cauldron.
+              </div>
+            </td>
+          </tr>
+
+          
+          <!-- Code -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">In code</h2>
+              <pre style="background:#1d1d1f; color:#f5f5f7; padding:16px; border-radius:8px; font-family:'SF Mono', Menlo, Monaco, 'Courier New', monospace; font-size:13px; line-height:1.5; overflow-x:auto; margin:0;"><code>import random\n\ndef build_golden(full_data, label_key, size=500, seed=42):\n    random.seed(seed)\n    # keep only examples that pass a simple quality check\n    good = [ex for ex in full_data if len(ex.get('text',''))>20]\n    # stratify by label to preserve class balance\n    by_label = {}\n    for ex in good:\n        lbl = ex[label_key]\n        by_label.setdefault(lbl, []).append(ex)\n    golden = []\n    per_label = max(1, size // len(by_label))\n    for lbl, items in by_label.items():\n        golden.extend(random.sample(items, min(per_label, len(items))))\n    return golden</code></pre>
+              
+              <div style="font-size:14px; color:#6e6e73; margin-top:8px; font-style:italic;">The function filters low‑quality rows, then draws a balanced sample per class to create a reproducible golden set.</div>
+              
+            </td>
+          </tr>
+          
+
+          <!-- Why it matters -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">Why it matters for AI Eng interviews</h2>
+              <div style="font-size:15px; color:#3a3a3c;">Employers look for experience with RAG pipelines, autonomous agents, and continuous evaluation; a golden dataset is the backbone for reliable evals, fine‑tuning loops, observability dashboards, and Model‑Control‑Plane (MCP) decisions, ensuring production models stay aligned with business goals.</div>
+            </td>
+          </tr>
+
+          <!-- Takeaway -->
+          <tr>
+            <td style="padding:24px 28px 28px 28px;">
+              <div style="background:#1d1d1f; color:#ffffff; padding:16px 18px; border-radius:8px; font-size:15px;">
+                <strong style="color:#30d158; font-size:12px; text-transform:uppercase; letter-spacing:0.5px;">One thing to remember</strong>
+                <div style="margin-top:6px;">A golden dataset is small but high‑quality, and it must be refreshed whenever the real‑world data distribution changes.</div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:16px 28px; background:#f5f5f7; border-top:1px solid #e5e5ea;">
+              <div style="font-size:12px; color:#8e8e93; text-align:center;">
+                AI Daily Tutor &middot; built with Claude API + GitHub Actions
+                <br />
+                <a href="https://github.com/kaushik701/ai-daily-tutor" style="color:#0a84ff; text-decoration:none;">View source &amp; archive on GitHub</a>
+              </div>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
