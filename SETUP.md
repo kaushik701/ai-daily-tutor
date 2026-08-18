@@ -54,7 +54,7 @@ Add three secrets:
 | `RESEND_API_KEY` | The `re_...` key from step 3 |
 | `RECIPIENT_EMAIL` | Your Gmail address (e.g. `kaushik@gmail.com`) |
 
-Optional secret: `GROQ_MODEL` if you want to override the default `qwen-2.5-32b`. This repo currently sets it to `openai/gpt-oss-120b` (some Groq models get deprecated over time — check [console.groq.com/docs/models](https://console.groq.com/docs/models) if you hit a `model_not_found` error).
+Optional secret: `GROQ_MODEL` if you want to override the default `openai/gpt-oss-120b`. Some Groq models get deprecated over time — check [console.groq.com/docs/models](https://console.groq.com/docs/models) if you hit a `model_not_found` error.
 
 ## ✅ Step 5: Enable Actions and run a test (3 min)
 

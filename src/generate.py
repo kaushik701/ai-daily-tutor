@@ -20,9 +20,8 @@ from pydantic import BaseModel, Field, ValidationError
 from .curriculum import Topic
 
 # Groq deprecates models periodically — check console.groq.com/docs/models
-# if this starts throwing model_not_found. CI overrides via the GROQ_MODEL
-# secret (currently openai/gpt-oss-120b); qwen-2.5-32b is the local fallback.
-MODEL = os.environ.get("GROQ_MODEL", "qwen-2.5-32b")
+# if this starts throwing model_not_found.
+MODEL = os.environ.get("GROQ_MODEL", "openai/gpt-oss-120b")
 # gpt-oss-120b is a reasoning model — it spends tokens on hidden reasoning
 # before emitting JSON, so it needs more headroom than a plain instruct model.
 MAX_TOKENS = 6000
