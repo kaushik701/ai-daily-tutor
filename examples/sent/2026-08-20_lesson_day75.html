@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Day 75: Observability for LLMs with OpenTelemetry</title>
+</head>
+<body style="margin:0; padding:0; background-color:#f5f5f7; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; color:#1d1d1f; line-height:1.6;">
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background-color:#f5f5f7;">
+    <tr>
+      <td align="center" style="padding:32px 16px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width:640px; background:#ffffff; border-radius:12px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+
+          <!-- Header strip -->
+          <tr>
+            <td style="background:linear-gradient(90deg, #0a84ff 0%, #5e5ce6 100%); padding:20px 28px;">
+              <div style="font-size:13px; color:#ffffffcc; letter-spacing:0.5px; text-transform:uppercase;">
+                AI Daily Tutor &middot; Day 75 of 90 &middot; AI Engineering
+              </div>
+              <div style="font-size:22px; font-weight:600; color:#ffffff; margin-top:6px;">
+                Day 75: Observability for LLMs with OpenTelemetry
+              </div>
+            </td>
+          </tr>
+
+          <!-- TL;DR -->
+          <tr>
+            <td style="padding:28px 28px 0 28px;">
+              <div style="background:#f0f4ff; border-left:4px solid #0a84ff; padding:14px 16px; border-radius:6px;">
+                <strong style="color:#0a84ff; font-size:13px; text-transform:uppercase; letter-spacing:0.5px;">TL;DR</strong>
+                <div style="margin-top:6px; font-size:15px; color:#1d1d1f;">Learn how to instrument large language model pipelines with OpenTelemetry to capture traces, spans, and metrics that keep production systems reliable and debuggable.</div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Plain English -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">In plain English</h2>
+              <div style="font-size:15px; color:#3a3a3c;">
+                Observability is the practice of making a system’s internal state visible from the outside. In the context of LLMs, you want to know when a request enters your service, how long the model inference takes, whether a retrieval‑augmented generation (RAG) step succeeded, and what resource usage each component incurred. OpenTelemetry (OTel) provides a vendor‑neutral API to emit traces (ordered events), spans (individual timed operations), and metrics (numeric measurements) that can be collected by any backend such as Jaeger, Prometheus, or a cloud observability platform.</div><div style="font-size:15px; color:#3a3a3c; margin-top:12px;">To instrument an LLM pipeline, wrap each logical piece—API gateway, prompt construction, vector search, model inference, post‑processing—in a span. Add attributes like model name, token count, and request ID so you can filter later. Emit counters for requests, histograms for latency, and gauges for GPU memory. This structured data lets you detect slowdowns, model drift, or failures in downstream services before they affect users.</div><div style="font-size:15px; color:#3a3a3c; margin-top:12px;">Because LLM workloads are often asynchronous and batch‑oriented, make sure to propagate the trace context across threads, async calls, and external services (e.g., a vector DB). Doing so stitches together a complete end‑to‑end picture, which is essential for debugging production AI features such as agents that call multiple tools or fine‑tuning jobs that run in the background.
+              </div>
+            </td>
+          </tr>
+
+          <!-- Analogy -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">Think of it this way</h2>
+              <div style="font-size:15px; color:#3a3a3c; background:#fffaf0; padding:14px 16px; border-radius:6px; border-left:4px solid #ff9f0a;">
+                Think of tracing an LLM request like following a pizza order from the phone call to the oven to the delivery driver. Each step—taking the order, preparing the dough, adding toppings, baking, and delivering—gets a timestamp and notes (span). If the pizza is late, you can look at the timestamps to see whether the oven was the bottleneck or the driver got stuck in traffic.
+              </div>
+            </td>
+          </tr>
+
+          
+          <!-- Code -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">In code</h2>
+              <pre style="background:#1d1d1f; color:#f5f5f7; padding:16px; border-radius:8px; font-family:'SF Mono', Menlo, Monaco, 'Courier New', monospace; font-size:13px; line-height:1.5; overflow-x:auto; margin:0;"><code>import time
+from opentelemetry import trace, metrics
+from opentelemetry.sdk.resources import Resource
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.metrics import MeterProvider
+from opentelemetry.sdk.trace.export import BatchSpanProcessor, ConsoleSpanExporter
+from opentelemetry.sdk.metrics.export import ConsoleMetricExporter, PeriodicExportingMetricReader
+
+# Setup tracer and meter
+trace.set_tracer_provider(TracerProvider(resource=Resource.create({"service.name": "llm-service"})))
+tracer = trace.get_tracer(__name__)
+trace.get_tracer_provider().add_span_processor(BatchSpanProcessor(ConsoleSpanExporter()))
+metrics.set_meter_provider(MeterProvider(metric_readers=[PeriodicExportingMetricReader(ConsoleMetricExporter())]))
+meter = metrics.get_meter(__name__)
+latency_hist = meter.create_histogram("llm_inference_latency_ms")
+
+def infer(prompt: str) -> str:
+    with tracer.start_as_current_span("model_inference") as span:
+        span.set_attribute("model.name", "gpt-4")
+        span.set_attribute("prompt.length", len(prompt))
+        start = time.time()
+        # Simulated model call
+        time.sleep(0.12)
+        result = "generated text"
+        latency = (time.time() - start) * 1000
+        latency_hist.record(latency, {"model.name": "gpt-4"})
+        return result</code></pre>
+              
+              <div style="font-size:14px; color:#6e6e73; margin-top:8px; font-style:italic;">The snippet creates an OpenTelemetry tracer and meter, wraps a fake model call in a span, records model name and prompt length as attributes, and logs inference latency to a histogram.</div>
+              
+            </td>
+          </tr>
+          
+
+          <!-- Why it matters -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">Why it matters for AI Eng interviews</h2>
+              <div style="font-size:15px; color:#3a3a3c;">Production AI jobs demand observability to meet SLAs for RAG pipelines, multi‑tool agents, and continuous fine‑tuning; metrics and traces let you spot latency spikes, token‑budget overruns, or downstream service failures, while standardized OpenTelemetry data feeds into monitoring dashboards, alerting, and root‑cause analysis required by most AI engineering JD listings.</div>
+            </td>
+          </tr>
+
+          <!-- Takeaway -->
+          <tr>
+            <td style="padding:24px 28px 28px 28px;">
+              <div style="background:#1d1d1f; color:#ffffff; padding:16px 18px; border-radius:8px; font-size:15px;">
+                <strong style="color:#30d158; font-size:12px; text-transform:uppercase; letter-spacing:0.5px;">One thing to remember</strong>
+                <div style="margin-top:6px;">Instrument every logical step of your LLM workflow with spans and export the data via OpenTelemetry for reliable production monitoring.</div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:16px 28px; background:#f5f5f7; border-top:1px solid #e5e5ea;">
+              <div style="font-size:12px; color:#8e8e93; text-align:center;">
+                AI Daily Tutor &middot; built with Claude API + GitHub Actions
+                <br />
+                <a href="https://github.com/kaushik701/ai-daily-tutor" style="color:#0a84ff; text-decoration:none;">View source &amp; archive on GitHub</a>
+              </div>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
