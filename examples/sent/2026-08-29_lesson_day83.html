@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Day 83: Vector DB Choices in Production</title>
+</head>
+<body style="margin:0; padding:0; background-color:#f5f5f7; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; color:#1d1d1f; line-height:1.6;">
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background-color:#f5f5f7;">
+    <tr>
+      <td align="center" style="padding:32px 16px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width:640px; background:#ffffff; border-radius:12px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+
+          <!-- Header strip -->
+          <tr>
+            <td style="background:linear-gradient(90deg, #0a84ff 0%, #5e5ce6 100%); padding:20px 28px;">
+              <div style="font-size:13px; color:#ffffffcc; letter-spacing:0.5px; text-transform:uppercase;">
+                AI Daily Tutor &middot; Day 83 of 90 &middot; AI Engineering
+              </div>
+              <div style="font-size:22px; font-weight:600; color:#ffffff; margin-top:6px;">
+                Day 83: Vector DB Choices in Production
+              </div>
+            </td>
+          </tr>
+
+          <!-- TL;DR -->
+          <tr>
+            <td style="padding:28px 28px 0 28px;">
+              <div style="background:#f0f4ff; border-left:4px solid #0a84ff; padding:14px 16px; border-radius:6px;">
+                <strong style="color:#0a84ff; font-size:13px; text-transform:uppercase; letter-spacing:0.5px;">TL;DR</strong>
+                <div style="margin-top:6px; font-size:15px; color:#1d1d1f;">A quick guide to picking between pgvector, Pinecone, Weaviate, and Qdrant for production vector search.</div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Plain English -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">In plain English</h2>
+              <div style="font-size:15px; color:#3a3a3c;">
+                Vector databases store high‑dimensional embeddings so you can retrieve similar items quickly. In production you must balance three forces: operational overhead (self‑hosted vs managed), scaling behavior (how many vectors, query latency, concurrent users), and ecosystem fit (SQL integration, API style, extra features like metadata filtering).\n\npgvector is a Postgres extension, so if your stack already runs PostgreSQL you get vector search with zero new infra, but you inherit Postgres scaling limits. Pinecone is a fully managed SaaS that auto‑scales, offers guaranteed SLAs, and hides replication details, at the cost of vendor lock‑in and higher per‑query price. Weaviate is open‑source with GraphQL/REST APIs and built‑in modules (e.g., hybrid search, transformers), letting you run on‑prem or in the cloud while still getting richer query primitives. Qdrant, written in Rust, excels at payload filtering and offers both self‑hosted and managed options; its API is simple and it is known for low latency on large collections.
+              </div>
+            </td>
+          </tr>
+
+          <!-- Analogy -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">Think of it this way</h2>
+              <div style="font-size:15px; color:#3a3a3c; background:#fffaf0; padding:14px 16px; border-radius:6px; border-left:4px solid #ff9f0a;">
+                Choosing a vector store is like picking a kitchen appliance: pgvector is the built‑in stove you already have—reliable but limited in size; Pinecone is a high‑end countertop espresso machine—plug‑and‑play with consistent output but you’re tied to the brand; Weaviate is a multi‑function food processor that can blend, chop, and knead, giving you many modes in one box; Qdrant is a precision sous‑vide device that maintains exact temperature (latency) and lets you add custom ingredients (metadata filters) while you control the whole setup.
+              </div>
+            </td>
+          </tr>
+
+          
+          <!-- Code -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">In code</h2>
+              <pre style="background:#1d1d1f; color:#f5f5f7; padding:16px; border-radius:8px; font-family:'SF Mono', Menlo, Monaco, 'Courier New', monospace; font-size:13px; line-height:1.5; overflow-x:auto; margin:0;"><code>import psycopg2, numpy as np\n\nconn = psycopg2.connect("host=localhost dbname=mydb user=me password=secret")\ncur = conn.cursor()\n# create table with pgvector column\ncur.execute("CREATE TABLE IF NOT EXISTS docs (id SERIAL PRIMARY KEY, content TEXT, embed VECTOR(1536));")\n\nvec = np.random.rand(1536).astype(np.float32).tolist()\ncur.execute("INSERT INTO docs (content, embed) VALUES (%s, %s)", ("sample text", vec))\nconn.commit()\n# simple similarity search\ncur.execute("SELECT id, content FROM docs ORDER BY embed <-> %s LIMIT 5;", (vec,))\nprint(cur.fetchall())\ncur.close(); conn.close()</code></pre>
+              
+              <div style="font-size:14px; color:#6e6e73; margin-top:8px; font-style:italic;">The snippet creates a pgvector column, inserts a random embedding, and runs a nearest‑neighbor query using the <-> operator.</div>
+              
+            </td>
+          </tr>
+          
+
+          <!-- Why it matters -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">Why it matters for AI Eng interviews</h2>
+              <div style="font-size:15px; color:#3a3a3c;">Retrieval‑augmented generation (RAG) and autonomous agents rely on fast, reliable vector lookup; the choice of store directly impacts latency budgets, cost, and observability pipelines that monitor query times and error rates. Fine‑tuning loops often re‑embed data, so a store that supports bulk upserts and versioned payloads eases the pipeline. Production teams look for clear SLAs, easy scaling (MCP – model‑compute‑pipeline integration), and built‑in metrics to satisfy engineering and DevOps requirements, making the architecture decision a key interview talking point.</div>
+            </td>
+          </tr>
+
+          <!-- Takeaway -->
+          <tr>
+            <td style="padding:24px 28px 28px 28px;">
+              <div style="background:#1d1d1f; color:#ffffff; padding:16px 18px; border-radius:8px; font-size:15px;">
+                <strong style="color:#30d158; font-size:12px; text-transform:uppercase; letter-spacing:0.5px;">One thing to remember</strong>
+                <div style="margin-top:6px;">Match the DB’s operational model and feature set to your product’s latency, scale, and ecosystem needs.</div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:16px 28px; background:#f5f5f7; border-top:1px solid #e5e5ea;">
+              <div style="font-size:12px; color:#8e8e93; text-align:center;">
+                AI Daily Tutor &middot; built with Claude API + GitHub Actions
+                <br />
+                <a href="https://github.com/kaushik701/ai-daily-tutor" style="color:#0a84ff; text-decoration:none;">View source &amp; archive on GitHub</a>
+              </div>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
