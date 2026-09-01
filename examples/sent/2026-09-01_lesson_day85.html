@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Day 85: Frontier vs Open-Source Models</title>
+</head>
+<body style="margin:0; padding:0; background-color:#f5f5f7; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; color:#1d1d1f; line-height:1.6;">
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background-color:#f5f5f7;">
+    <tr>
+      <td align="center" style="padding:32px 16px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width:640px; background:#ffffff; border-radius:12px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+
+          <!-- Header strip -->
+          <tr>
+            <td style="background:linear-gradient(90deg, #0a84ff 0%, #5e5ce6 100%); padding:20px 28px;">
+              <div style="font-size:13px; color:#ffffffcc; letter-spacing:0.5px; text-transform:uppercase;">
+                AI Daily Tutor &middot; Day 85 of 90 &middot; AI Engineering
+              </div>
+              <div style="font-size:22px; font-weight:600; color:#ffffff; margin-top:6px;">
+                Day 85: Frontier vs Open-Source Models
+              </div>
+            </td>
+          </tr>
+
+          <!-- TL;DR -->
+          <tr>
+            <td style="padding:28px 28px 0 28px;">
+              <div style="background:#f0f4ff; border-left:4px solid #0a84ff; padding:14px 16px; border-radius:6px;">
+                <strong style="color:#0a84ff; font-size:13px; text-transform:uppercase; letter-spacing:0.5px;">TL;DR</strong>
+                <div style="margin-top:6px; font-size:15px; color:#1d1d1f;">Frontier (proprietary) models like Claude or GPT offer polished APIs and enterprise SLAs, while open‑source models such as Llama and Qwen give you full control and lower cost at the expense of engineering effort.</div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Plain English -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">In plain English</h2>
+              <div style="font-size:15px; color:#3a3a3c;">
+                Proprietary models are hosted by companies that handle scaling, security, and updates. You pay per token and get built‑in features like content filters, usage dashboards, and guaranteed uptime—qualities that map directly to production SLAs.</div><div style="font-size:15px; color:#3a3a3c; margin-top:12px;">Open‑source models let you download the weights and run them on your own hardware or cloud VMs. This means you can fine‑tune them on domain data, modify the architecture, or integrate them into custom pipelines, but you also must provision GPUs, monitor latency, and patch vulnerabilities yourself. The trade‑off matrix balances cost, latency, data privacy, and flexibility.</div><div style="font-size:15px; color:#3a3a3c; margin-top:12px;">When choosing for a product, ask: Do you need rapid time‑to‑market and strong observability out of the box, or do you need deep customization and the ability to run the model offline? The answer drives whether you build on a frontier API or spin up an open‑source stack.
+              </div>
+            </td>
+          </tr>
+
+          <!-- Analogy -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">Think of it this way</h2>
+              <div style="font-size:15px; color:#3a3a3c; background:#fffaf0; padding:14px 16px; border-radius:6px; border-left:4px solid #ff9f0a;">
+                Choosing a model is like picking a car: a rental (frontier API) gets you on the road instantly, with insurance and maintenance handled, but you can’t modify the engine. Buying a kit car (open‑source model) costs more upfront and you must assemble and service it, yet you can swap parts and drive wherever you like.
+              </div>
+            </td>
+          </tr>
+
+          
+          <!-- Code -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">In code</h2>
+              <pre style="background:#1d1d1f; color:#f5f5f7; padding:16px; border-radius:8px; font-family:'SF Mono', Menlo, Monaco, 'Courier New', monospace; font-size:13px; line-height:1.5; overflow-x:auto; margin:0;"><code>import openai
+from transformers import pipeline
+
+# Frontier API call
+resp = openai.ChatCompletion.create(model="gpt-4o", messages=[{"role":"user","content":"Hello"}])
+print(resp.choices[0].message.content)
+
+# Open‑source inference
+llama = pipeline("text-generation", model="meta-llama/Meta-Llama-3-8B")
+print(llama("Hello")[0]["generated_text"])</code></pre>
+              
+              <div style="font-size:14px; color:#6e6e73; margin-top:8px; font-style:italic;">The snippet shows a one‑line API request to a proprietary model and a comparable local inference call using HuggingFace's pipeline for an open‑source model.</div>
+              
+            </td>
+          </tr>
+          
+
+          <!-- Why it matters -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">Why it matters for AI Eng interviews</h2>
+              <div style="font-size:15px; color:#3a3a3c;">Employers look for engineers who can decide between RAG services built on frontier APIs versus self‑hosted open‑source backends, design evaluation pipelines, fine‑tune models for domain‑specific agents, and instrument observability and MCP (model control plane) for reliable production deployments.</div>
+            </td>
+          </tr>
+
+          <!-- Takeaway -->
+          <tr>
+            <td style="padding:24px 28px 28px 28px;">
+              <div style="background:#1d1d1f; color:#ffffff; padding:16px 18px; border-radius:8px; font-size:15px;">
+                <strong style="color:#30d158; font-size:12px; text-transform:uppercase; letter-spacing:0.5px;">One thing to remember</strong>
+                <div style="margin-top:6px;">Frontier models give you speed and reliability; open‑source models give you control and cost savings.</div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:16px 28px; background:#f5f5f7; border-top:1px solid #e5e5ea;">
+              <div style="font-size:12px; color:#8e8e93; text-align:center;">
+                AI Daily Tutor &middot; built with Claude API + GitHub Actions
+                <br />
+                <a href="https://github.com/kaushik701/ai-daily-tutor" style="color:#0a84ff; text-decoration:none;">View source &amp; archive on GitHub</a>
+              </div>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
