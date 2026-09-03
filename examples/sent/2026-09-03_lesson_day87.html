@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Day 87: Agent Skills (Anthropic) – SKILL.md, Progressive Disclosure vs MCP</title>
+</head>
+<body style="margin:0; padding:0; background-color:#f5f5f7; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; color:#1d1d1f; line-height:1.6;">
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background-color:#f5f5f7;">
+    <tr>
+      <td align="center" style="padding:32px 16px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width:640px; background:#ffffff; border-radius:12px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+
+          <!-- Header strip -->
+          <tr>
+            <td style="background:linear-gradient(90deg, #0a84ff 0%, #5e5ce6 100%); padding:20px 28px;">
+              <div style="font-size:13px; color:#ffffffcc; letter-spacing:0.5px; text-transform:uppercase;">
+                AI Daily Tutor &middot; Day 87 of 90 &middot; AI Engineering
+              </div>
+              <div style="font-size:22px; font-weight:600; color:#ffffff; margin-top:6px;">
+                Day 87: Agent Skills (Anthropic) – SKILL.md, Progressive Disclosure vs MCP
+              </div>
+            </td>
+          </tr>
+
+          <!-- TL;DR -->
+          <tr>
+            <td style="padding:28px 28px 0 28px;">
+              <div style="background:#f0f4ff; border-left:4px solid #0a84ff; padding:14px 16px; border-radius:6px;">
+                <strong style="color:#0a84ff; font-size:13px; text-transform:uppercase; letter-spacing:0.5px;">TL;DR</strong>
+                <div style="margin-top:6px; font-size:15px; color:#1d1d1f;">Learn how Anthropic's SKILL.md defines reusable agent capabilities, how progressive disclosure reveals them safely, and how this differs from the Modular Conversational Prompt (MCP) approach.</div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Plain English -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">In plain English</h2>
+              <div style="font-size:15px; color:#3a3a3c;">
+                Anthropic lets you describe an agent's abilities in a markdown file called SKILL.md. Each skill lists a name, description, required inputs, and a short code snippet that the runtime can execute. When a user asks the agent to perform a task, the system can either expose the full skill definition immediately (eager disclosure) or reveal only what is needed step‑by‑step (progressive disclosure). Progressive disclosure reduces the attack surface because the model only sees the minimal context required to solve the current sub‑task.</div><div style="font-size:15px; color:#3a3a3c; margin-top:12px;">MCP, on the other hand, bundles many skills into a single large prompt that the model parses each turn. While MCP can be simpler to ship, it makes debugging harder, inflates token usage, and mixes concerns that would otherwise be isolated in separate skill modules. By keeping skills modular and disclosed progressively, you gain better observability, easier fine‑tuning of individual components, and clearer production boundaries.
+              </div>
+            </td>
+          </tr>
+
+          <!-- Analogy -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">Think of it this way</h2>
+              <div style="font-size:15px; color:#3a3a3c; background:#fffaf0; padding:14px 16px; border-radius:6px; border-left:4px solid #ff9f0a;">
+                Think of a restaurant kitchen: SKILL.md is the recipe book where each dish (skill) is written on its own card. Progressive disclosure is like handing the chef only the card for the dish they’re currently cooking, instead of laying out the entire book on the counter (MCP), which can cause confusion and waste space.
+              </div>
+            </td>
+          </tr>
+
+          
+          <!-- Code -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">In code</h2>
+              <pre style="background:#1d1d1f; color:#f5f5f7; padding:16px; border-radius:8px; font-family:'SF Mono', Menlo, Monaco, 'Courier New', monospace; font-size:13px; line-height:1.5; overflow-x:auto; margin:0;"><code>from anthropic import Anthropic
+
+def register_skill(name, description, fn):
+    return {"name": name, "description": description, "run": fn}
+
+# Example skill: add two numbers
+add_skill = register_skill(
+    "add_numbers",
+    "Adds two integers and returns the sum.",
+    lambda a, b: a + b,
+)
+
+# Progressive disclosure: only send skill metadata when needed
+client = Anthropic()
+response = client.messages.create(
+    model="claude-3-sonnet-20240229",
+    max_tokens=256,
+    messages=[
+        {"role": "user", "content": "What is 7 plus 5?"},
+        {"role": "assistant", "content": "Sure, I can use the add_numbers skill.", "tool_calls": [{"name": "add_numbers", "input": {"a": 7, "b": 5}}]},
+    ],
+    tools=[add_skill],
+)
+print(response.content)</code></pre>
+              
+              <div style="font-size:14px; color:#6e6e73; margin-top:8px; font-style:italic;">The snippet registers a simple add_numbers skill and shows how the model can call it with only the necessary metadata, illustrating progressive disclosure.</div>
+              
+            </td>
+          </tr>
+          
+
+          <!-- Why it matters -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">Why it matters for AI Eng interviews</h2>
+              <div style="font-size:15px; color:#3a3a3c;">Employers look for engineers who can build agents that integrate RAG pipelines, support dynamic tool calling, and stay observable in production; using SKILL.md with progressive disclosure gives fine‑grained control, lower token costs, and easier evaluation (evals) compared to monolithic MCP prompts, directly aligning with job‑descriptions that emphasize modularity, fine‑tuning, and production‑ready observability.</div>
+            </td>
+          </tr>
+
+          <!-- Takeaway -->
+          <tr>
+            <td style="padding:24px 28px 28px 28px;">
+              <div style="background:#1d1d1f; color:#ffffff; padding:16px 18px; border-radius:8px; font-size:15px;">
+                <strong style="color:#30d158; font-size:12px; text-transform:uppercase; letter-spacing:0.5px;">One thing to remember</strong>
+                <div style="margin-top:6px;">Expose only the skill details the model needs at the moment—keep the rest hidden for safety and efficiency.</div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:16px 28px; background:#f5f5f7; border-top:1px solid #e5e5ea;">
+              <div style="font-size:12px; color:#8e8e93; text-align:center;">
+                AI Daily Tutor &middot; built with Claude API + GitHub Actions
+                <br />
+                <a href="https://github.com/kaushik701/ai-daily-tutor" style="color:#0a84ff; text-decoration:none;">View source &amp; archive on GitHub</a>
+              </div>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
