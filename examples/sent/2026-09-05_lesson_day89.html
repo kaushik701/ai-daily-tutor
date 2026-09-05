@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Day 89: Production Failure Modes</title>
+</head>
+<body style="margin:0; padding:0; background-color:#f5f5f7; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; color:#1d1d1f; line-height:1.6;">
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background-color:#f5f5f7;">
+    <tr>
+      <td align="center" style="padding:32px 16px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width:640px; background:#ffffff; border-radius:12px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+
+          <!-- Header strip -->
+          <tr>
+            <td style="background:linear-gradient(90deg, #0a84ff 0%, #5e5ce6 100%); padding:20px 28px;">
+              <div style="font-size:13px; color:#ffffffcc; letter-spacing:0.5px; text-transform:uppercase;">
+                AI Daily Tutor &middot; Day 89 of 90 &middot; AI Engineering
+              </div>
+              <div style="font-size:22px; font-weight:600; color:#ffffff; margin-top:6px;">
+                Day 89: Production Failure Modes
+              </div>
+            </td>
+          </tr>
+
+          <!-- TL;DR -->
+          <tr>
+            <td style="padding:28px 28px 0 28px;">
+              <div style="background:#f0f4ff; border-left:4px solid #0a84ff; padding:14px 16px; border-radius:6px;">
+                <strong style="color:#0a84ff; font-size:13px; text-transform:uppercase; letter-spacing:0.5px;">TL;DR</strong>
+                <div style="margin-top:6px; font-size:15px; color:#1d1d1f;">Learn to detect and mitigate hallucination, drift, cost spikes, and latency tails in AI services.</div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Plain English -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">In plain English</h2>
+              <div style="font-size:15px; color:#3a3a3c;">
+                In production, a model can start *hallucinating*—producing outputs that look plausible but have no grounding in the input or knowledge base. This often shows up in Retrieval‑Augmented Generation (RAG) pipelines when the retriever returns irrelevant documents.\n\n*Drift* occurs when the data the model sees in the wild slowly diverges from the training distribution, causing accuracy to decay over time. Simultaneously, hidden cost spikes can appear when a new query pattern triggers a much larger model or longer context, inflating cloud spend. Finally, *latency tails* are rare but severe delays that break SLAs and hurt user experience, especially for real‑time agents and evaluation loops.
+              </div>
+            </td>
+          </tr>
+
+          <!-- Analogy -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">Think of it this way</h2>
+              <div style="font-size:15px; color:#3a3a3c; background:#fffaf0; padding:14px 16px; border-radius:6px; border-left:4px solid #ff9f0a;">
+                Think of a restaurant kitchen: if the chef starts guessing ingredients (hallucination), the menu changes without notice (drift), the gas bill suddenly jumps (cost spike), and occasional orders take forever to cook (latency tail), the dining experience collapses unless the manager monitors and corrects each issue.
+              </div>
+            </td>
+          </tr>
+
+          
+          <!-- Code -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">In code</h2>
+              <pre style="background:#1d1d1f; color:#f5f5f7; padding:16px; border-radius:8px; font-family:'SF Mono', Menlo, Monaco, 'Courier New', monospace; font-size:13px; line-height:1.5; overflow-x:auto; margin:0;"><code>import time, random, statistics, logging\n\nthreshold = 0.5  # seconds\nwindow = []\nwhile True:\n    latency = random.random()  # replace with real call timing\n    window.append(latency)\n    if len(window) > 100:\n        window.pop(0)\n        p95 = statistics.quantiles(window, n=100)[94]  # 95th percentile\n        if p95 > threshold:\n            logging.warning(f"Latency tail detected: p95={p95:.3f}s")\n    time.sleep(0.1)</code></pre>
+              
+              <div style="font-size:14px; color:#6e6e73; margin-top:8px; font-style:italic;">The snippet keeps a sliding window of recent latencies and logs a warning when the 95th‑percentile exceeds a safety threshold, a common pattern for spotting latency tails.</div>
+              
+            </td>
+          </tr>
+          
+
+          <!-- Why it matters -->
+          <tr>
+            <td style="padding:24px 28px 0 28px;">
+              <h2 style="font-size:17px; color:#1d1d1f; margin:0 0 10px 0;">Why it matters for AI Eng interviews</h2>
+              <div style="font-size:15px; color:#3a3a3c;">Employers look for engineers who can keep RAG pipelines reliable, monitor agent response times, run continuous evals, and trigger fine‑tuning when drift is detected—all while maintaining observability and cost control on the Model Control Plane (MCP). An on‑call mindset that anticipates hallucination, drift, cost spikes, and latency tails demonstrates readiness for production AI responsibilities.</div>
+            </td>
+          </tr>
+
+          <!-- Takeaway -->
+          <tr>
+            <td style="padding:24px 28px 28px 28px;">
+              <div style="background:#1d1d1f; color:#ffffff; padding:16px 18px; border-radius:8px; font-size:15px;">
+                <strong style="color:#30d158; font-size:12px; text-transform:uppercase; letter-spacing:0.5px;">One thing to remember</strong>
+                <div style="margin-top:6px;">Always instrument the 95th‑percentile latency and set alerts before a tail hurts your SLA.</div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:16px 28px; background:#f5f5f7; border-top:1px solid #e5e5ea;">
+              <div style="font-size:12px; color:#8e8e93; text-align:center;">
+                AI Daily Tutor &middot; built with Claude API + GitHub Actions
+                <br />
+                <a href="https://github.com/kaushik701/ai-daily-tutor" style="color:#0a84ff; text-decoration:none;">View source &amp; archive on GitHub</a>
+              </div>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
